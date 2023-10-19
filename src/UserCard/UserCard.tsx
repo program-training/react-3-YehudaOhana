@@ -3,12 +3,19 @@ import TodoList from "../toDoList/ToDolist";
 
 interface User {
   id: number;
-  name: string;
+  username: string;
   email: string;
 }
 
+interface ToDo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
 function UserCard(user: User): JSX.Element {
-  const [toDo, setToDo] = useState<User[]>([]);
+  const [toDo, setToDo] = useState<ToDo[]>([]);
 
   const fetchToDo = async () => {
     let newToDo = await fetch(`https://jsonplaceholder.typicode.com/todos?userId=${user.id}`);
@@ -16,8 +23,8 @@ function UserCard(user: User): JSX.Element {
     setToDo(arrToDo);
   };
   return (
-    <div onClick={fetchToDo}>
-      <p>{user.name}</p>
+    <div onClick={fetchToDo} className="User">
+      <p>{user.username}</p>
       <p>{user.email}</p>
       {toDo.length > 0 && <TodoList task={toDo} />}
     </div>

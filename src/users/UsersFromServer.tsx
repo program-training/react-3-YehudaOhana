@@ -40,7 +40,7 @@ export function UsersFromServer(): JSX.Element {
   return (
     <div>
       {users.map((user) => (
-        <CreateUser id={user.id} name={user.name} email={user.email}></CreateUser>
+        <CreateUser id={user.id} username={user.name} email={user.email}></CreateUser>
       ))}
     </div>
   );
